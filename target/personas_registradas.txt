@@ -1,0 +1,18 @@
+Estudiante,1.0,luis,blanco,lbs@unillanos.edu.co,1.60004632E8,Ingeniería de Sistemas,true,4.0
+Estudiante,2.0,Brayan,Vargas,bVargas@unillanos.edu.co,1.7800012E7,Licenciatura en Educación Fisica y Deportes,true,4.0
+Estudiante,3.0,Vivian,Prado,vPrado@unillanos.edu.co,1.60004612E8,Licenciatura en Educación Fisica y Deportes,true,4.0
+Estudiante,4.0,mayckoll,vargas,Mvargas@unillanos.edu.co,1.60004612E8,Ingeniería de Sistemas,true,3.6
+Estudiante,5.0,pedro,pe,pedrope@unillanos.edu.co,1.60004603E8,Ingeniería de Sistemas,false,5.0
+Estudiante,7.0,fasdfsf,vargas,angiep@unillanos.edu.co,1.29492392E16,Ingeniería de Sistemas,true,3.8
+Estudiante,8.0,carlos,muños,cm@unillanos.edu.co,1.60004423E8,Ingeniería de Sistemas,true,4.0
+Estudiante,9.0,qsfc,wqedq,asmasm@unillano.edu.co,123123.0,Licenciatura en Educación Infantil,true,4.0
+Estudiante,10.0,Jhon,Garcia,jGarci@unillanos.edu.co,1.600046E8,Ingeniería de Sistemas,true,4.5
+Profesor,1.0,Ana,Gil,aGil@unillanos.edu.co,tiempo completo
+Profesor,2.0,jose,Barreto,jose@unillanos.edu.co,tiempo completo 
+Profesor,3.0,Manuel,Lopez,mLopez@unillanos.edu.co,indefinido
+Profesor,5.0,luis,soy,lbs@unillanos.edu.co,tiempo completo
+Profesor,6.0,luis4,soy,lbs3@unillanos.edu.co,tiempo completo
+Profesor,7.0,felipe,agudelo,ajhsdausnd@asdasd,definido
+Profesor,8.0,Carlos,Peña,Peñita@unillanos.edu.co,definido
+Profesor,9.0,mayckoll,rodriguez,mRodriguez@unillanos.edu.co,indefinido
+Profesor,10.0,Diana,Perez,dPerez@unillanos.edu.co,tiempo completo 
