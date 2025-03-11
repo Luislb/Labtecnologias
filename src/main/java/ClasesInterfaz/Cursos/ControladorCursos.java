@@ -29,7 +29,7 @@ import javax.swing.JTextField;
  * @author klmxl
  */
 public class ControladorCursos extends JFrame{
-        public JPanel coursePanel;
+        public JPanel panelCurso;
         private Connection connection;
         private CursosInscritos cursosInscritos;
         private CursosProfesores cursosProfesores;
@@ -40,229 +40,229 @@ public class ControladorCursos extends JFrame{
             this.cursosInscritos = cursosInscritos;
             this.cursosProfesores = cursosProfesores;
             this.busquedasPersonas = busquedasPersonas;
-            this.coursePanel = new JPanel(new BorderLayout());
+            this.panelCurso = new JPanel(new BorderLayout());
         }
         
-        public void setupCoursePanel() {
-            coursePanel.setLayout(new BorderLayout());
+        public void configurarPanelCursos() {
+            panelCurso.setLayout(new BorderLayout());
 
-            JPanel formPanel = new JPanel(new GridBagLayout());
+            JPanel panelFormulario = new JPanel(new GridBagLayout());
             GridBagConstraints gbc = new GridBagConstraints();
             gbc.insets = new Insets(5, 5, 5, 5);
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.weightx = 1.0;
 
-            JLabel idLabel = new JLabel("ID Curso:");
-            JTextField idField = new JTextField(10);
-            JButton searchButton = new JButton("Buscar");
+            JLabel etiquetaID = new JLabel("ID Curso:");
+            JTextField campoID = new JTextField(10);
+            JButton botonBuscar = new JButton("Buscar");
 
-            JLabel nameLabel = new JLabel("Nombre:");
-            JTextField nameField = new JTextField(20);
-            nameField.setEditable(true);
+            JLabel etiquetaNombre = new JLabel("Nombre:");
+            JTextField campoNombre = new JTextField(20);
+            campoNombre.setEditable(true);
 
-            JLabel programLabel = new JLabel("Programa:");
-            JTextField programField = new JTextField(20);
-            programField.setEditable(true);
+            JLabel etiquetaPrograma = new JLabel("Programa:");
+            JTextField campoPrograma = new JTextField(20);
+            campoPrograma.setEditable(true);
 
-            JLabel activeLabel = new JLabel("Activo:");
-            JCheckBox activeCheckBox = new JCheckBox();
+            JLabel etiquetaActivo = new JLabel("Activo:");
+            JCheckBox checkActivo = new JCheckBox();
 
-            JButton addButton = new JButton("Agregar");
-            JButton updateButton = new JButton("Modificar");
-            JButton deleteButton = new JButton("Eliminar");
+            JButton botonAgregar = new JButton("Agregar");
+            JButton botonActualizar = new JButton("Modificar");
+            JButton botonEliminar = new JButton("Eliminar");
 
 
             gbc.gridx = 0; gbc.gridy = 0;
-            formPanel.add(idLabel, gbc);
+            panelFormulario.add(etiquetaID, gbc);
             gbc.gridx = 1;
-            formPanel.add(idField, gbc);
+            panelFormulario.add(campoID, gbc);
             gbc.gridx = 2;
-            formPanel.add(searchButton, gbc);
+            panelFormulario.add(botonBuscar, gbc);
 
             gbc.gridx = 0; gbc.gridy = 1;
-            formPanel.add(nameLabel, gbc);
+            panelFormulario.add(etiquetaNombre, gbc);
             gbc.gridx = 1; gbc.gridwidth = 2;
-            formPanel.add(nameField, gbc);
+            panelFormulario.add(campoNombre, gbc);
             gbc.gridwidth = 1;
 
             gbc.gridx = 0; gbc.gridy = 2;
-            formPanel.add(programLabel, gbc);
+            panelFormulario.add(etiquetaPrograma, gbc);
             gbc.gridx = 1; gbc.gridwidth = 2;
-            formPanel.add(programField, gbc);
+            panelFormulario.add(campoPrograma, gbc);
             gbc.gridwidth = 1;
 
             gbc.gridx = 0; gbc.gridy = 3;
-            formPanel.add(activeLabel, gbc);
+            panelFormulario.add(etiquetaActivo, gbc);
             gbc.gridx = 1;
-            formPanel.add(activeCheckBox, gbc);
+            panelFormulario.add(checkActivo, gbc);
 
             gbc.gridx = 0; gbc.gridy = 4;
-            formPanel.add(addButton, gbc);
+            panelFormulario.add(botonAgregar, gbc);
             gbc.gridx = 1;
-            formPanel.add(updateButton, gbc);
+            panelFormulario.add(botonActualizar, gbc);
             gbc.gridx = 2;
-            formPanel.add(deleteButton, gbc);
+            panelFormulario.add(botonEliminar, gbc);
 
 
-            JLabel studentIdLabel = new JLabel("ID Estudiante:");
-            JTextField studentIdField = new JTextField(10);
-            JButton searchStudentButton = new JButton("Buscar Estudiante");
+            JLabel etiquetaEstudianteID = new JLabel("ID Estudiante:");
+            JTextField campoEstudianteID = new JTextField(10);
+            JButton botonBuscarEstudiante = new JButton("Buscar Estudiante");
 
-            JLabel studentNameLabel = new JLabel("Nombre:");
-            JTextField studentNameField = new JTextField(20);
-            studentNameField.setEditable(false);
+            JLabel etiquetaNombreEstudiante = new JLabel("Nombre:");
+            JTextField campoNombreEstudiante = new JTextField(20);
+            campoNombreEstudiante.setEditable(false);
 
-            JButton enrollStudentButton = new JButton("Inscribir Estudiante");
-            JButton removeStudentEnrollmentButton = new JButton("Eliminar Inscripción Estudiante");
+            JButton botonInscribirEstudiante = new JButton("Inscribir Estudiante");
+            JButton botonEliminarInscripcionEstudiante = new JButton("Eliminar Inscripción Estudiante");
 
 
-            JLabel professorIdLabel = new JLabel("ID Profesor:");
-            JTextField professorIdField = new JTextField(10);
-            JButton searchProfessorButton = new JButton("Buscar Profesor");
+            JLabel etiquetaProfesorID = new JLabel("ID Profesor:");
+            JTextField campoProfesorID = new JTextField(10);
+            JButton botonBuscarProfesor = new JButton("Buscar Profesor");
 
-            JLabel professorNameLabel = new JLabel("Nombre:");
-            JTextField professorNameField = new JTextField(20);
-            professorNameField.setEditable(false);
+            JLabel etiquetaNombreProfesor = new JLabel("Nombre:");
+            JTextField campoNombreProfesor = new JTextField(20);
+            campoNombreProfesor.setEditable(false);
 
-            JButton enrollProfessorButton = new JButton("Inscribir Profesor");
-            JButton removeProfessorEnrollmentButton = new JButton("Eliminar Inscripción Profesor");
+            JButton botonInscribirProfesor = new JButton("Inscribir Profesor");
+            JButton botonEliminarInscripcionProfesor = new JButton("Eliminar Inscripción Profesor");
 
             gbc.gridx = 0; gbc.gridy = 5;
-            formPanel.add(studentIdLabel, gbc);
+            panelFormulario.add(etiquetaEstudianteID, gbc);
             gbc.gridx = 1;
-            formPanel.add(studentIdField, gbc);
+            panelFormulario.add(campoEstudianteID, gbc);
             gbc.gridx = 2;
-            formPanel.add(searchStudentButton, gbc);
+            panelFormulario.add(botonBuscarEstudiante, gbc);
 
             gbc.gridx = 0; gbc.gridy = 6;
-            formPanel.add(studentNameLabel, gbc);
+            panelFormulario.add(etiquetaNombreEstudiante, gbc);
             gbc.gridx = 1; gbc.gridwidth = 2;
-            formPanel.add(studentNameField, gbc);
+            panelFormulario.add(campoNombreEstudiante, gbc);
             gbc.gridwidth = 1;
 
             gbc.gridx = 0; gbc.gridy = 7;
-            formPanel.add(enrollStudentButton, gbc);
+            panelFormulario.add(botonInscribirEstudiante, gbc);
             gbc.gridx = 1;
-            formPanel.add(removeStudentEnrollmentButton, gbc);
+            panelFormulario.add(botonEliminarInscripcionEstudiante, gbc);
 
             gbc.gridx = 0; gbc.gridy = 8;
-            formPanel.add(professorIdLabel, gbc);
+            panelFormulario.add(etiquetaProfesorID, gbc);
             gbc.gridx = 1;
-            formPanel.add(professorIdField, gbc);
+            panelFormulario.add(campoProfesorID, gbc);
             gbc.gridx = 2;
-            formPanel.add(searchProfessorButton, gbc);
+            panelFormulario.add(botonBuscarProfesor, gbc);
 
             gbc.gridx = 0; gbc.gridy = 9;
-            formPanel.add(professorNameLabel, gbc);
+            panelFormulario.add(etiquetaNombreProfesor, gbc);
             gbc.gridx = 1; gbc.gridwidth = 2;
-            formPanel.add(professorNameField, gbc);
+            panelFormulario.add(campoNombreProfesor, gbc);
             gbc.gridwidth = 1;
 
             gbc.gridx = 0; gbc.gridy = 10;
-            formPanel.add(enrollProfessorButton, gbc);
+            panelFormulario.add(botonInscribirProfesor, gbc);
             gbc.gridx = 1;
-            formPanel.add(removeProfessorEnrollmentButton, gbc);
+            panelFormulario.add(botonEliminarInscripcionProfesor, gbc);
 
-            coursePanel.add(formPanel, BorderLayout.NORTH);
-            coursePanel.revalidate();
-            coursePanel.repaint();
+            panelCurso.add(panelFormulario, BorderLayout.NORTH);
+            panelCurso.revalidate();
+            panelCurso.repaint();
 
-            searchButton.addActionListener(new ActionListener() {
+            botonBuscar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int id = Integer.parseInt(idField.getText().trim());
+                        int id = Integer.parseInt(campoID.getText().trim());
                         cursosInscritos.cargarDatos();
                         Curso curso = cursosInscritos.buscarCursoPorID(id);
 
                         if (curso != null) {
 
-                            nameField.setText(curso.getNombre());
-                            programField.setText(curso.getPrograma().getNombre());
-                            activeCheckBox.setSelected(curso.isActivo());
+                            campoNombre.setText(curso.getNombre());
+                            campoPrograma.setText(curso.getPrograma().getNombre());
+                            checkActivo.setSelected(curso.isActivo());
                         } else {
-                            JOptionPane.showMessageDialog(coursePanel, "Curso no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Curso no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            addButton.addActionListener(new ActionListener() {
+            botonAgregar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int id = Integer.parseInt(idField.getText().trim());
-                        String nombre = nameField.getText().trim();
-                        String nombrePrograma = programField.getText().trim();
-                        boolean activo = activeCheckBox.isSelected();
+                        int id = Integer.parseInt(campoID.getText().trim());
+                        String nombre = campoNombre.getText().trim();
+                        String nombrePrograma = campoPrograma.getText().trim();
+                        boolean activo = checkActivo.isSelected();
                     
                         if (nombre.isEmpty() || nombrePrograma.isEmpty()) {
-                            JOptionPane.showMessageDialog(coursePanel, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         Programa programa = busquedasPersonas.obtenerProgramaPorNombre(nombrePrograma);
                         if (programa == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El programa no existe. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El programa no existe. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         Curso nuevoCurso = new Curso(id, nombre, programa, activo);
                         cursosInscritos.inscribirCurso(nuevoCurso);
-                        JOptionPane.showMessageDialog(coursePanel, "Curso agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Curso agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
-                        idField.setText("");
-                        nameField.setText("");
-                        programField.setText("");
-                        activeCheckBox.setSelected(false);
+                        campoID.setText("");
+                        campoNombre.setText("");
+                        campoPrograma.setText("");
+                        checkActivo.setSelected(false);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            updateButton.addActionListener(new ActionListener() {
+            botonActualizar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int id = Integer.parseInt(idField.getText().trim());
-                        String nuevoNombre = nameField.getText().trim();
-                        String nombrePrograma = programField.getText().trim();
-                        boolean activo = activeCheckBox.isSelected();
+                        int id = Integer.parseInt(campoID.getText().trim());
+                        String nuevoNombre = campoNombre.getText().trim();
+                        String nombrePrograma = campoPrograma.getText().trim();
+                        boolean activo = checkActivo.isSelected();
 
                         if (nuevoNombre.isEmpty() || nombrePrograma.isEmpty()) {
-                            JOptionPane.showMessageDialog(coursePanel, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         Curso cursoExistente = cursosInscritos.buscarCursoPorID(id);
                         if (cursoExistente == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso con el ID especificado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso con el ID especificado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         Programa programa = busquedasPersonas.obtenerProgramaPorNombre(nombrePrograma);
                         if (programa == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El programa no existe. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El programa no existe. Verifique el nombre.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         Curso cursoActualizado = new Curso(id, nuevoNombre, programa, activo);
                         cursosInscritos.actualizarCurso(cursoActualizado);
-                        JOptionPane.showMessageDialog(coursePanel, "Curso actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Curso actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
-            deleteButton.addActionListener(new ActionListener() {
+            botonEliminar.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int id = Integer.parseInt(idField.getText().trim());
-                        int confirm = JOptionPane.showConfirmDialog(coursePanel, 
+                        int id = Integer.parseInt(campoID.getText().trim());
+                        int confirm = JOptionPane.showConfirmDialog(panelCurso, 
                             "¿Está seguro de que desea eliminar este curso?", 
                             "Confirmar eliminación", 
                             JOptionPane.YES_NO_OPTION);
@@ -272,172 +272,172 @@ public class ControladorCursos extends JFrame{
                         }
                         Curso cursoExistente = cursosInscritos.buscarCursoPorID(id);
                         if (cursoExistente == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso con el ID especificado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso con el ID especificado no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         cursosInscritos.eliminarCurso(id);
-                        JOptionPane.showMessageDialog(coursePanel, "Curso eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                        idField.setText("");
-                        nameField.setText("");
-                        programField.setText("");
-                        activeCheckBox.setSelected(false);
+                        JOptionPane.showMessageDialog(panelCurso, "Curso eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        campoID.setText("");
+                        campoNombre.setText("");
+                        campoPrograma.setText("");
+                        checkActivo.setSelected(false);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
-            searchStudentButton.addActionListener(new ActionListener() {
+            botonBuscarEstudiante.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int idEstudiante = Integer.parseInt(studentIdField.getText().trim());
+                        int idEstudiante = Integer.parseInt(campoEstudianteID.getText().trim());
 
                         Persona estudiante = busquedasPersonas.buscarEstudiantePorID(idEstudiante);
                         if (estudiante != null && estudiante instanceof Estudiante) {
-                            studentNameField.setText(estudiante.getNombres());
+                            campoNombreEstudiante.setText(estudiante.getNombres());
                         } else {
-                            JOptionPane.showMessageDialog(coursePanel, "Estudiante no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Estudiante no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            searchProfessorButton.addActionListener(new ActionListener() {
+            botonBuscarProfesor.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int idProfesor = Integer.parseInt(professorIdField.getText().trim());
+                        int idProfesor = Integer.parseInt(campoProfesorID.getText().trim());
 
                         Persona profesor = busquedasPersonas.buscarProfesorPorID(idProfesor);
 
                         if (profesor != null) {
-                            professorNameField.setText(profesor.getNombres() + " " + profesor.getApellidos());
+                            campoNombreProfesor.setText(profesor.getNombres() + " " + profesor.getApellidos());
                         } else {
-                            JOptionPane.showMessageDialog(coursePanel, "Profesor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Profesor no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            enrollStudentButton.addActionListener(new ActionListener() {
+            botonInscribirEstudiante.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int estudianteID = Integer.parseInt(studentIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
+                        int estudianteID = Integer.parseInt(campoEstudianteID.getText().trim());
+                        int cursoID = Integer.parseInt(campoID.getText().trim());
 
                         Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
                         if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         Persona estudiante = busquedasPersonas.buscarEstudiantePorID(estudianteID);
                         if (estudiante == null || !(estudiante instanceof Estudiante)) {
-                            JOptionPane.showMessageDialog(coursePanel, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
 
                         cursosInscritos.inscribirEstudianteEnCurso(estudianteID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Estudiante inscrito en el curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Estudiante inscrito en el curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            removeStudentEnrollmentButton.addActionListener(new ActionListener() {
+            botonEliminarInscripcionEstudiante.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int estudianteID = Integer.parseInt(studentIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
+                        int estudianteID = Integer.parseInt(campoEstudianteID.getText().trim());
+                        int cursoID = Integer.parseInt(campoID.getText().trim());
 
 
                         Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
                         if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         Persona estudiante = busquedasPersonas.buscarEstudiantePorID(estudianteID);
                         if (estudiante == null || !(estudiante instanceof Estudiante)) {
-                            JOptionPane.showMessageDialog(coursePanel, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         cursosInscritos.eliminarInscripcionEstudiante(estudianteID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Estudiante eliminado del curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Estudiante eliminado del curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            enrollProfessorButton.addActionListener(new ActionListener() {
+            botonInscribirProfesor.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int profesorID = Integer.parseInt(professorIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
+                        int profesorID = Integer.parseInt(campoProfesorID.getText().trim());
+                        int cursoID = Integer.parseInt(campoID.getText().trim());
 
                         Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
                         if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         Persona profesor = busquedasPersonas.buscarProfesorPorID(profesorID);
                         if (profesor == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El profesor no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El profesor no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         if (cursosProfesores.cursoTieneProfesor(cursoID)) {
-                            JOptionPane.showMessageDialog(coursePanel, "Este curso ya tiene un profesor asignado.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "Este curso ya tiene un profesor asignado.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         cursosProfesores.inscribirProfesorEnCurso(profesorID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Profesor inscrito en el curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Profesor inscrito en el curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });
 
-            removeProfessorEnrollmentButton.addActionListener(new ActionListener() {
+            botonEliminarInscripcionProfesor.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     try {
-                        int profesorID = Integer.parseInt(professorIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
+                        int profesorID = Integer.parseInt(campoProfesorID.getText().trim());
+                        int cursoID = Integer.parseInt(campoID.getText().trim());
 
                         Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
                         if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                         Persona profesor = busquedasPersonas.buscarProfesorPorID(profesorID);
                         if (profesor == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El profesor no existe.", "Error", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(panelCurso, "El profesor no existe.", "Error", JOptionPane.ERROR_MESSAGE);
                             return;
                         }
 
                         cursosProfesores.eliminarInscripcionProfesor(profesorID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Profesor eliminado del curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Profesor eliminado del curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                     } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(panelCurso, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
                 }
             });

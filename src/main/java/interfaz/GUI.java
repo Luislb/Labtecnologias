@@ -64,14 +64,14 @@ public class GUI extends JFrame {
         
         tabbedPane.addTab("Estudiantes", controladorEstudiante.panelEstudiante);
         tabbedPane.addTab("Profesores", controladorProfesor.panelProfesor);
-        tabbedPane.addTab("Cursos", controladorCursos.coursePanel);
+        tabbedPane.addTab("Cursos", controladorCursos.panelCurso);
         
         setJMenuBar(crearMenu());
         add(tabbedPane);
         
         controladorEstudiante.configurarPanelEstudiante();
         controladorProfesor.configuracionPanelProfesor();
-        controladorCursos.setupCoursePanel();
+        controladorCursos.configurarPanelCursos();
     }
 
     private JMenuBar crearMenu() {
