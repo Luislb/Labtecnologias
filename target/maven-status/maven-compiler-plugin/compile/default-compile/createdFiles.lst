@@ -6,9 +6,11 @@ ClasesInterfaz\Cursos\ControladorCursos$10.class
 ClasesInterfaz\Cursos\ControladorCursos$8.class
 com\mycompany\laboratoriopoo\Clases\CursoProfesor.class
 ClasesBusquedas\BusquedasPersonas.class
+InterfazGrafica\VentanaCursos.class
 ClasesInterfaz\Cursos\ControladorCursos$4.class
 Interfaces\SqlPersona.class
 ClasesInterfaz\Cursos\ControladorCursos$5.class
+InterfazGrafica\VentanaEstudianteDetalle.class
 ClasesInterfaz\Cursos\ControladorCursos$2.class
 ClasesInterfaz\Cursos\ControladorCursos.class
 com\mycompany\laboratoriopoo\Clases\Persona.class
@@ -18,6 +20,7 @@ com\mycompany\laboratoriopoo\Clases\Inscripcion.class
 ClasesInterfaz\Cursos\ControladorCursos$7.class
 com\mycompany\laboratoriopoo\Clases\CursosProfesores.class
 InterfazGrafica\GUI.class
+InterfazGrafica\VentanaEstudiantes.class
 ClasesInterfaz\Estudiantes\ControladorEstudiante.class
 com\mycompany\laboratoriopoo\LaboratorioPOO.class
 Interfaces\Servicios.class
@@ -25,6 +28,8 @@ ClasesInterfaz\Profesores\ControladorProfesor.class
 ClasesInterfaz\Cursos\ControladorCursos$9.class
 ClasesInterfaz\Cursos\ControladorCursos$3.class
 com\mycompany\laboratoriopoo\Clases\Curso.class
+ClasesInterfaz\EstudianteDetalle\ControladorEstudianteDetalle.class
 com\mycompany\laboratoriopoo\Clases\Estudiante.class
 com\mycompany\laboratoriopoo\Clases\CursosInscritos.class
+InterfazGrafica\VentanaProfesores.class
 ClasesInterfaz\Cursos\ControladorCursos$6.class
