@@ -8,10 +8,12 @@ import java.util.List;
 import com.mycompany.laboratoriopoo.Clases.Programa;
 import ClasesBusquedas.BusquedasPersonas;
 import Interfaces.SqlPersona;
+import Interfaces.Observador;
 
 public class InscripcionesPersonas {
     public List<SqlPersona> listado;
     public List<Persona> listadoPersonas;
+    private List<Observador> observadores;
     private Connection connection;
     private BusquedasPersonas busquedasPersonas;
     
@@ -19,7 +21,17 @@ public class InscripcionesPersonas {
         this.connection = connection;
         this.listado = new ArrayList<>();
         this.listadoPersonas = new ArrayList<>();
+        this.observadores = new ArrayList<>();
         this.busquedasPersonas = new BusquedasPersonas(connection);
+    }
+    public void agregarObservador(Observador obs) {
+        observadores.add(obs);
+    }
+
+    public void notificarObservadores() {
+        for (Observador obs : observadores) {
+            obs.actualizarTabla();
+        }
     }
     public boolean existeID(double id, String tabla) throws SQLException {
         if (!esTablaValida(tabla)) {
@@ -49,6 +61,7 @@ public class InscripcionesPersonas {
         } catch (SQLException e) {
             throw new RuntimeException("Error al inscribir persona en la BD", e);
         }
+        notificarObservadores();
     }
 
     public void eliminar(SqlPersona persona) {
@@ -61,6 +74,7 @@ public class InscripcionesPersonas {
         } catch (SQLException e) {
             throw new RuntimeException("Error al eliminar persona en la BD", e);
         }
+        notificarObservadores();
     }
 
     public void actualizar(SqlPersona persona) {
@@ -78,6 +92,7 @@ public class InscripcionesPersonas {
         } catch (SQLException e) {
             throw new RuntimeException("Error al actualizar persona en la BD", e);
         }
+        notificarObservadores();
     }
 
     public void cargarDatos() {
@@ -148,6 +163,7 @@ public class InscripcionesPersonas {
         } catch (IOException e) {
             throw new RuntimeException("Error al escribir el archivo de personas.", e);
         }
+        notificarObservadores();
     }
 
     public Integer cantidadActual() {

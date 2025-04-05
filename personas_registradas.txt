@@ -9,12 +9,20 @@ Estudiante,8.0,carlos,muños,cm@unillanos.edu.co,1.60004423E8,Ingeniería de Sis
 Estudiante,9.0,qsfc,wqedq,asmasm@unillano.edu.co,123123.0,Licenciatura en Educación Infantil,true,4.0
 Estudiante,10.0,jhon,Garcia,Jgarcia@unillanos.edu.co,1.6004601E7,Ingeniería de Sistemas,true,4.0
 Estudiante,11.0,Brayan,Vargas rodriguez,bVargas@unillanos.edu.co,1.71820129E8,Ingeniería Agroindustrial,true,4.0
-Profesor,1.0,Ana,Gil,aGil@unillanos.edu.co,tiempo completo
-Profesor,2.0,jose,Barreto,jose@unillanos.edu.co,tiempo completo 
+Estudiante,12.0,gilberto,Gil,gGil@unillanos.edu.co,1.283299E7,Ingeniería Ambiental,true,5.0
+Profesor,1.0,Ana Pureza,Rodriguez Gil,apGil@unillanos.edu.co,tiempo completo
+Profesor,2.0,jose Daniel,Barreto,joseD@unillanos.edu.co,tiempo completo 
 Profesor,3.0,Manuel,Lopez,mLopez@unillanos.edu.co,indefinido
 Profesor,4.0,Laura,Garcia,jGarcia@unillanos.edu.co,Indefinido
 Profesor,5.0,luis,soy,lbs@unillanos.edu.co,tiempo completo
 Profesor,6.0,luis4,soy,lbs3@unillanos.edu.co,tiempo completo
 Profesor,7.0,felipe,agudelo,ajhsdausnd@asdasd,definido
 Profesor,8.0,Carlos,Peña,Peñita@unillanos.edu.co,definido
-Profesor,10.0,Diana,Perez,dPerez@unillanos.edu.co,tiempo completo 
+Profesor,10.0,Diana Joana,Perez,djPerez@unillanos.edu.co,indefinido
+Profesor,11.0,Juan,Lopez,jLopez@unillanos.edu.co,definido
+Profesor,12.0,Juan,Lopez Gil,jLopezGil@unillanos.edu.co,definido
+Profesor,13.0,Daniel,Riveros,dRiveros@unillanos.edu.co,indefinido
+Profesor,14.0,Juan Carlos,bodoque,jcbodoque@unillanos.edu.co,tiempo completo
+Profesor,15.0,Brayan,Vargas,bVargas123@unillanos.edu.co,tiempo completo
+Profesor,16.0,Jose Luis,Barreto,jlBarreto@unillanos.edu.co,indefinido
+Profesor,17.0,Juan ,valdez,jvaldez@unillanos.edu.co,indefinido

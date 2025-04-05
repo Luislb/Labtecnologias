@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 
     public GUI() {
         setTitle("Gestión Universitaria");
-        setSize(800, 600);
+        setSize(700, 500);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
@@ -59,7 +59,7 @@ public class GUI extends JFrame {
         controladorProfesor = new ControladorProfesor(connection, inscripcionesPersonas);
         controladorEstudiante = new ControladorEstudiante(connection, inscripcionesPersonas);
         controladorCursos = new ControladorCursos(connection, cursosInscritos, cursosProfesores, busquedasPersonas);
-        controladorEstudianteDetalle = new ControladorEstudianteDetalle(connection, inscripcionesPersonas);
+        controladorEstudianteDetalle = new ControladorEstudianteDetalle(connection, inscripcionesPersonas, cursosInscritos, busquedasPersonas);
     }
 
     private JMenuBar crearMenu() {
@@ -113,7 +113,7 @@ public class GUI extends JFrame {
 class VentanaEstudiantes extends JFrame {
     public VentanaEstudiantes(ControladorEstudiante controladorEstudiante) {
         setTitle("Gestión de Estudiantes");
-        setSize(600, 400);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -124,8 +124,8 @@ class VentanaEstudiantes extends JFrame {
 }
 class VentanaEstudianteDetalle extends JFrame {
     public VentanaEstudianteDetalle(ControladorEstudianteDetalle controladorEstudianteDetalle) {
-        setTitle("Gestión de Estudiantes");
-        setSize(600, 400);
+        setTitle("Gestión de Estudiantes-Detalles");
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         

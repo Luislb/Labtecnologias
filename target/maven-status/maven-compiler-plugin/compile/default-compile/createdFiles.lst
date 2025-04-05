@@ -2,13 +2,12 @@ com\mycompany\laboratoriopoo\Clases\InscripcionesPersonas.class
 ClasesInterfaz\Cursos\ControladorCursos$1.class
 com\mycompany\laboratoriopoo\Clases\Programa.class
 Clases\BaseDeDatos\BaseDatos.class
-ClasesInterfaz\Cursos\ControladorCursos$10.class
-ClasesInterfaz\Cursos\ControladorCursos$8.class
 com\mycompany\laboratoriopoo\Clases\CursoProfesor.class
 ClasesBusquedas\BusquedasPersonas.class
 InterfazGrafica\VentanaCursos.class
 ClasesInterfaz\Cursos\ControladorCursos$4.class
 Interfaces\SqlPersona.class
+Interfaces\Observador.class
 ClasesInterfaz\Cursos\ControladorCursos$5.class
 InterfazGrafica\VentanaEstudianteDetalle.class
 ClasesInterfaz\Cursos\ControladorCursos$2.class
@@ -25,7 +24,6 @@ ClasesInterfaz\Estudiantes\ControladorEstudiante.class
 com\mycompany\laboratoriopoo\LaboratorioPOO.class
 Interfaces\Servicios.class
 ClasesInterfaz\Profesores\ControladorProfesor.class
-ClasesInterfaz\Cursos\ControladorCursos$9.class
 ClasesInterfaz\Cursos\ControladorCursos$3.class
 com\mycompany\laboratoriopoo\Clases\Curso.class
 ClasesInterfaz\EstudianteDetalle\ControladorEstudianteDetalle.class

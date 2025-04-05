@@ -93,27 +93,6 @@ public class ControladorProfesor extends JFrame{
 
         panelProfesor.add(panelFormulario, BorderLayout.NORTH);
 
-        // ---- TABLA PARA MOSTRAR LOS PROFESORES ----
-        String[] nombresColumnas = {"ID", "Nombres", "Apellidos", "Correo Electrónico", "Tipo de Contrato"};
-        DefaultTableModel modeloTabla = new DefaultTableModel(nombresColumnas, 0);
-        JTable tablaProfesores = new JTable(modeloTabla);
-        JScrollPane panelDesplazamiento = new JScrollPane(tablaProfesores);
-        panelProfesor.add(panelDesplazamiento, BorderLayout.CENTER);
-
-        JButton botonRefrescar = new JButton("Refrescar Tabla");
-        JPanel panelRefrescar = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRefrescar.add(botonRefrescar);
-        panelProfesor.add(panelRefrescar, BorderLayout.SOUTH);
-
-        botonRefrescar.addActionListener(e -> {
-            modeloTabla.setRowCount(0); // Limpiar tabla
-            List<String> profesores = inscripciones.imprimirListado("profesor");
-            for (String profe : profesores) {
-                String[] datos = profe.split(",");
-                modeloTabla.addRow(datos);
-            }
-        });
-
         botonBuscar.addActionListener(e -> {
             try {
                 Double id = Double.parseDouble(campoID.getText());

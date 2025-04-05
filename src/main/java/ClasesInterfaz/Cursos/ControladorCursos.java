@@ -103,19 +103,6 @@ public class ControladorCursos extends JFrame{
             gbc.gridx = 2;
             formPanel.add(deleteButton, gbc);
 
-
-            JLabel studentIdLabel = new JLabel("ID Estudiante:");
-            JTextField studentIdField = new JTextField(10);
-            JButton searchStudentButton = new JButton("Buscar Estudiante");
-
-            JLabel studentNameLabel = new JLabel("Nombre:");
-            JTextField studentNameField = new JTextField(20);
-            studentNameField.setEditable(false);
-
-            JButton enrollStudentButton = new JButton("Inscribir Estudiante");
-            JButton removeStudentEnrollmentButton = new JButton("Eliminar Inscripción Estudiante");
-
-
             JLabel professorIdLabel = new JLabel("ID Profesor:");
             JTextField professorIdField = new JTextField(10);
             JButton searchProfessorButton = new JButton("Buscar Profesor");
@@ -126,24 +113,6 @@ public class ControladorCursos extends JFrame{
 
             JButton enrollProfessorButton = new JButton("Inscribir Profesor");
             JButton removeProfessorEnrollmentButton = new JButton("Eliminar Inscripción Profesor");
-
-            gbc.gridx = 0; gbc.gridy = 5;
-            formPanel.add(studentIdLabel, gbc);
-            gbc.gridx = 1;
-            formPanel.add(studentIdField, gbc);
-            gbc.gridx = 2;
-            formPanel.add(searchStudentButton, gbc);
-
-            gbc.gridx = 0; gbc.gridy = 6;
-            formPanel.add(studentNameLabel, gbc);
-            gbc.gridx = 1; gbc.gridwidth = 2;
-            formPanel.add(studentNameField, gbc);
-            gbc.gridwidth = 1;
-
-            gbc.gridx = 0; gbc.gridy = 7;
-            formPanel.add(enrollStudentButton, gbc);
-            gbc.gridx = 1;
-            formPanel.add(removeStudentEnrollmentButton, gbc);
 
             gbc.gridx = 0; gbc.gridy = 8;
             formPanel.add(professorIdLabel, gbc);
@@ -288,25 +257,6 @@ public class ControladorCursos extends JFrame{
                     }
                 }
             });
-            searchStudentButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        int idEstudiante = Integer.parseInt(studentIdField.getText().trim());
-
-                        Persona estudiante = busquedasPersonas.buscarEstudiantePorID(idEstudiante);
-                        if (estudiante != null && estudiante instanceof Estudiante) {
-                            studentNameField.setText(estudiante.getNombres());
-                        } else {
-                            JOptionPane.showMessageDialog(coursePanel, "Estudiante no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                        }
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "ID inválido. Debe ser un número.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
-
             searchProfessorButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -325,65 +275,6 @@ public class ControladorCursos extends JFrame{
                     }
                 }
             });
-
-            enrollStudentButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        int estudianteID = Integer.parseInt(studentIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
-
-                        Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
-                        if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-
-                        Persona estudiante = busquedasPersonas.buscarEstudiantePorID(estudianteID);
-                        if (estudiante == null || !(estudiante instanceof Estudiante)) {
-                            JOptionPane.showMessageDialog(coursePanel, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-
-
-                        cursosInscritos.inscribirEstudianteEnCurso(estudianteID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Estudiante inscrito en el curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
-
-            removeStudentEnrollmentButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        int estudianteID = Integer.parseInt(studentIdField.getText().trim());
-                        int cursoID = Integer.parseInt(idField.getText().trim());
-
-
-                        Curso curso = cursosInscritos.buscarCursoPorID(cursoID);
-                        if (curso == null) {
-                            JOptionPane.showMessageDialog(coursePanel, "El curso no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-
-                        Persona estudiante = busquedasPersonas.buscarEstudiantePorID(estudianteID);
-                        if (estudiante == null || !(estudiante instanceof Estudiante)) {
-                            JOptionPane.showMessageDialog(coursePanel, "El estudiante no existe.", "Error", JOptionPane.ERROR_MESSAGE);
-                            return;
-                        }
-
-                        cursosInscritos.eliminarInscripcionEstudiante(estudianteID, cursoID);
-                        JOptionPane.showMessageDialog(coursePanel, "Estudiante eliminado del curso correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
-                    } catch (NumberFormatException ex) {
-                        JOptionPane.showMessageDialog(coursePanel, "Los IDs deben ser números válidos.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            });
-
             enrollProfessorButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

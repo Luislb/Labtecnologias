@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import com.mycompany.laboratoriopoo.Clases.Curso;
 import ClasesBusquedas.BusquedasPersonas;
+import Interfaces.Observador;
 import java.io.File;
 import java.sql.Statement;
 
@@ -21,6 +22,7 @@ import java.sql.Statement;
 public class CursosInscritos implements Servicios {
     private List<Inscripcion> listado;
      private List<Curso> listadoCurso;
+     private List<Observador> observadores;
     private InscripcionesPersonas inscripciones;
     private BusquedasPersonas busquedasPersonas;
     private Connection connection;
@@ -31,9 +33,18 @@ public class CursosInscritos implements Servicios {
         this.inscripciones = inscripciones;
         this.listado = new ArrayList<>();
         this.listadoCurso = new ArrayList<>();
+        this.observadores = new ArrayList<>();
         this.busquedasPersonas = new BusquedasPersonas(connection);
     }
+    public void agregarObservador(Observador obs) {
+        observadores.add(obs);
+    }
     
+    public void notificarObservadores() {
+        for (Observador obs : observadores) {
+            obs.actualizarTablaCursos();
+        }
+    }
     public void inscribir(Inscripcion inscripcion) {
         listado.add(inscripcion);
         guardarInformacion();
@@ -168,10 +179,11 @@ public class CursosInscritos implements Servicios {
                 System.out.println("Curso insertado en la base de datos.");
                 JOptionPane.showMessageDialog(null, "Curso agregado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
-
+            notificarObservadores();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
     }
   
     public Curso buscarCursoPorID(int id) {
@@ -214,6 +226,7 @@ public class CursosInscritos implements Servicios {
             } else {
                 System.out.println("No se encontró el curso con el ID proporcionado.");
             }
+            notificarObservadores();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -250,7 +263,7 @@ public class CursosInscritos implements Servicios {
                 deleteStmt.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Curso eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
-
+            notificarObservadores();
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al eliminar el curso.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -302,5 +315,26 @@ public class CursosInscritos implements Servicios {
             lista.add(ins.toString() + "\n");
         }
         return lista;
+    }
+    public List<Curso> obtenerTodosLosCursos() {
+        List<Curso> cursos = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM cursos";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Curso curso = new Curso(
+                    rs.getInt("id"),
+                    rs.getString("nombre"),
+                    new Programa(rs.getString("programa")), // ajusta si es necesario
+                    rs.getBoolean("activo")
+                );
+                cursos.add(curso);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cursos;
     }
 }
