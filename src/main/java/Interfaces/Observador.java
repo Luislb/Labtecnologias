@@ -11,4 +11,5 @@ package Interfaces;
 public interface Observador {
     void actualizarTabla(); 
     void actualizarTablaCursos();
+    void actualizarHistorialCursos(int estudianteID);
 }

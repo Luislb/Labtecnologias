@@ -21,8 +21,9 @@ import java.sql.Statement;
 
 public class CursosInscritos implements Servicios {
     private List<Inscripcion> listado;
-     private List<Curso> listadoCurso;
-     private List<Observador> observadores;
+    private List<Curso> listadoCurso;
+    private List<Observador> observadores;
+    private List<Observador> observadoresHistorial;
     private InscripcionesPersonas inscripciones;
     private BusquedasPersonas busquedasPersonas;
     private Connection connection;
@@ -34,15 +35,24 @@ public class CursosInscritos implements Servicios {
         this.listado = new ArrayList<>();
         this.listadoCurso = new ArrayList<>();
         this.observadores = new ArrayList<>();
+        this.observadoresHistorial = new ArrayList<>();
         this.busquedasPersonas = new BusquedasPersonas(connection);
     }
     public void agregarObservador(Observador obs) {
         observadores.add(obs);
     }
+    public void agregarObservadorHistorial(Observador obs) {
+        observadoresHistorial.add(obs);
+    }
     
     public void notificarObservadores() {
         for (Observador obs : observadores) {
             obs.actualizarTablaCursos();
+        }
+    }
+    public void notificarObservadoresHistorialCursos(int estudianteID) {
+        for (Observador obs : observadoresHistorial) {
+            obs.actualizarHistorialCursos(estudianteID);
         }
     }
     public void inscribir(Inscripcion inscripcion) {
@@ -277,11 +287,13 @@ public class CursosInscritos implements Servicios {
             stmt.setInt(1, estudianteID);
             stmt.setInt(2, cursoID);
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Estudiante inscrito en el curso correctamente.");
+            JOptionPane.showMessageDialog(null, "Estudiante inscrito en el curso correctamente.");   
+            
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al inscribir al estudiante en el curso.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        notificarObservadoresHistorialCursos(estudianteID);
     }
   
     public void eliminarInscripcionEstudiante(int estudianteID, int cursoID) {
@@ -293,8 +305,43 @@ public class CursosInscritos implements Servicios {
        } catch (SQLException e) {
            e.printStackTrace();
        }
-   }
+    }
+    public List<Curso> obtenerCursosPorEstudiante(int estudianteID) {
+        List<Curso> listaCursos = new ArrayList<>();
 
+        String query = "SELECT c.ID, c.Nombre, c.Programa, c.Activo " +
+                       "FROM cursos c " +
+                       "JOIN estudiantes_cursos ec ON c.ID = ec.curso_id " +
+                       "WHERE ec.estudiante_id = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, estudianteID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                String nombrePrograma = rs.getString("Programa");
+                Programa programa = busquedasPersonas.obtenerProgramaPorNombre(nombrePrograma);
+
+                // Validación por si no se encuentra el programa
+                if (programa == null) {
+                    programa = new Programa(0, "Programa Desconocido", 0, new java.util.Date(), new Facultad(0, "Facultad Desconocida", null));
+                }
+
+                Curso curso = new Curso(
+                    rs.getInt("ID"),
+                    rs.getString("Nombre"),
+                    programa,
+                    rs.getBoolean("Activo")
+                );
+
+                listaCursos.add(curso);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listaCursos;
+    }
     @Override
     public String imprimirPosicion(int posicion) {
         if (posicion >= 0 && posicion < listado.size()) {

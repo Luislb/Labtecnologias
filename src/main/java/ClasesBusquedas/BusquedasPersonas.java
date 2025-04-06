@@ -1,6 +1,7 @@
 
 package ClasesBusquedas;
 
+import Interfaces.Observador;
 import com.mycompany.laboratoriopoo.Clases.Estudiante;
 import com.mycompany.laboratoriopoo.Clases.Facultad;
 import com.mycompany.laboratoriopoo.Clases.Persona;
@@ -10,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,10 +20,11 @@ import java.sql.SQLException;
  */
 public class BusquedasPersonas {
     private Connection connection;
-
+    
     public BusquedasPersonas(Connection connection) {
         this.connection = connection;
     }
+
     private Facultad obtenerFacultad(int facultadID) {
         String sql = "SELECT f.ID, f.Nombre, p.ID AS ID, p.Nombre, p.Apellido, p.Email " +
                      "FROM facultades f " +
@@ -73,7 +77,7 @@ public class BusquedasPersonas {
         return null;
     }
     
-    public Persona buscarEstudiantePorID(long id) {
+    public Persona buscarEstudiantePorID(int id) {
         String sql = "SELECT * FROM estudiantes WHERE ID = ?";
 
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
@@ -92,6 +96,7 @@ public class BusquedasPersonas {
                     rs.getDouble("Promedio")
                 );
             }
+            
         } catch (SQLException e) {
             throw new RuntimeException("Error al buscar estudiante con ID: " + id, e);
         }

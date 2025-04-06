@@ -25,6 +25,8 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
     private JTextField txtNombreCurso;
     private JTextField txtAnio;
     private JTextField campoID;
+    private JTable tablaHistorial;
+    private DefaultTableModel modeloHistorial;
     private JComboBox<String> comboPeriodo;
     private JButton btnInscribir;
     private Connection connection;
@@ -46,6 +48,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         this.panelEstudianteDetalle = new JPanel(new BorderLayout());
         this.inscripciones.agregarObservador(this);
         this.cursosInscritos.agregarObservador(this);
+        this.cursosInscritos.agregarObservadorHistorial(this);
 
         // Configuración de la ventana
         setTitle("Estudiante - Detalle");
@@ -58,7 +61,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         
         // Crear las pestañas
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.addTab("Historial Cursos", new JPanel());  // Pestaña vacía de ejemplo
+        tabbedPane.addTab("Historial Cursos", crearPanelHistorialCursos());  // Pestaña vacía de ejemplo
         tabbedPane.addTab("Inscribir Curso", crearPanelInscribirCurso()); // Pestaña con formulario de inscripción
         tabbedPane.addTab("Cursos", crearPanelCursos()); // Pestaña con lista de cursos
         tabbedPane.addTab("Docentes", crearPanelProfesor()); // Pestaña con lista de docentes
@@ -264,6 +267,8 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
                 campoPrograma.setText(estudiante.getPrograma().getNombre());
                 checkActivo.setSelected(estudiante.isActivo());
                 campoPromedio.setText(String.valueOf(estudiante.getPromedio()));
+                
+                cursosInscritos.notificarObservadoresHistorialCursos((int) estudiante.getID());
                 return;
             }
         }
@@ -295,6 +300,42 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
 
         return panel;
     }
+    private JPanel crearPanelHistorialCursos() {
+        JPanel panel = new JPanel(new BorderLayout());
+
+        String[] columnas = {"ID Curso", "Nombre", "Programa", "Activo"};
+        modeloHistorial = new DefaultTableModel(columnas, 0);  // ← se usa el de la clase
+        tablaHistorial = new JTable(modeloHistorial);
+        JScrollPane scrollPane = new JScrollPane(tablaHistorial);
+
+        panel.add(scrollPane, BorderLayout.CENTER);
+        return panel;
+    }
+    private void actualizarTablaHistorial(int estudianteID) {
+        modeloHistorial.setRowCount(0); // Limpiar tabla
+
+        List<Curso> cursos = cursosInscritos.obtenerCursosPorEstudiante(estudianteID);
+        for (Curso curso : cursos) {
+            modeloHistorial.addRow(new Object[]{
+                curso.getID(),
+                curso.getNombre(),
+                curso.getPrograma().getNombre(),
+                curso.isActivo() ? "Sí" : "No"
+            });
+        }
+    }
+    @Override
+    public void actualizarHistorialCursos(int estudianteID) {
+        if (!campoID.getText().isEmpty()) {
+            try {
+                estudianteID = Integer.parseInt(campoID.getText().trim());
+                actualizarTablaHistorial(estudianteID);
+            } catch (NumberFormatException ex) {
+                System.err.println("ID inválido en actualizar(): " + ex.getMessage());
+            }
+        }
+    }
+    
     @Override
     public void actualizarTablaCursos() {
         modeloTablaCursos.setRowCount(0); // limpiar
