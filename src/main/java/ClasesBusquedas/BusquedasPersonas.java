@@ -2,6 +2,7 @@
 package ClasesBusquedas;
 
 import Interfaces.Observador;
+import Fabrica.FabricaEntidad;
 import com.mycompany.laboratoriopoo.Clases.Estudiante;
 import com.mycompany.laboratoriopoo.Clases.Facultad;
 import com.mycompany.laboratoriopoo.Clases.Persona;
@@ -111,7 +112,7 @@ public class BusquedasPersonas {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                return new Profesor(
+                 return new Profesor(
                     rs.getLong("ID"),  
                     rs.getString("Nombres"),
                     rs.getString("Apellidos"),

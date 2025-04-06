@@ -59,7 +59,7 @@ public class GUI extends JFrame {
         controladorProfesor = new ControladorProfesor(connection, inscripcionesPersonas);
         controladorEstudiante = new ControladorEstudiante(connection, inscripcionesPersonas);
         controladorCursos = new ControladorCursos(connection, cursosInscritos, cursosProfesores, busquedasPersonas);
-        controladorEstudianteDetalle = new ControladorEstudianteDetalle(connection, inscripcionesPersonas, cursosInscritos, busquedasPersonas);
+        //controladorEstudianteDetalle = new ControladorEstudianteDetalle(connection, inscripcionesPersonas, cursosInscritos, busquedasPersonas);
     }
 
     private JMenuBar crearMenu() {
@@ -74,7 +74,13 @@ public class GUI extends JFrame {
         estudiantesItem.addActionListener(e -> abrirVentana(new VentanaEstudiantes(controladorEstudiante)));
         profesoresItem.addActionListener(e -> abrirVentana(new VentanaProfesores(controladorProfesor)));
         cursosItem.addActionListener(e -> abrirVentana(new VentanaCursos(controladorCursos)));
-        estudianteDetalleItem.addActionListener(e -> abrirVentana(new VentanaEstudianteDetalle(controladorEstudianteDetalle)));
+        estudianteDetalleItem.addActionListener(e -> {
+        ControladorEstudianteDetalle controladorEstudianteDetalle = new ControladorEstudianteDetalle(
+        connection, inscripcionesPersonas, cursosInscritos, busquedasPersonas
+        );
+        abrirVentana(new VentanaEstudianteDetalle(controladorEstudianteDetalle));
+        });
+
 
         menu.add(estudiantesItem);
         menu.add(profesoresItem);

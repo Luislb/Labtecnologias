@@ -15,6 +15,7 @@ ClasesInterfaz\Cursos\ControladorCursos.class
 com\mycompany\laboratoriopoo\Clases\Persona.class
 com\mycompany\laboratoriopoo\Clases\Profesor.class
 com\mycompany\laboratoriopoo\Clases\Facultad.class
+Fabrica\FabricaEntidad.class
 com\mycompany\laboratoriopoo\Clases\Inscripcion.class
 ClasesInterfaz\Cursos\ControladorCursos$7.class
 com\mycompany\laboratoriopoo\Clases\CursosProfesores.class

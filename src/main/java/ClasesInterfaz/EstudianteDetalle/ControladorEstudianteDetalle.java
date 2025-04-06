@@ -50,16 +50,14 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         this.cursosInscritos.agregarObservador(this);
         this.cursosInscritos.agregarObservadorHistorial(this);
 
-        // Configuración de la ventana
         setTitle("Estudiante - Detalle");
         setSize(900, 700);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        // Crear panel de estudiante
+  
         crearPanelEstudiante();
         
-        // Crear las pestañas
         JTabbedPane tabbedPane = new JTabbedPane();
         tabbedPane.addTab("Historial Cursos", crearPanelHistorialCursos());  // Pestaña vacía de ejemplo
         tabbedPane.addTab("Inscribir Curso", crearPanelInscribirCurso()); // Pestaña con formulario de inscripción
@@ -137,7 +135,6 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         gbc.gridx = 1; gbc.gridwidth = 2; panelFormulario.add(campoPromedio, gbc);
         gbc.gridwidth = 1;
 
-        // Ahora agregamos el panelFormulario al panelEstudianteDetalle en la parte superior
         panelEstudianteDetalle.add(panelFormulario, BorderLayout.NORTH);
         botonBuscar.addActionListener(e -> buscarEstudiante(
             Double.parseDouble(campoID.getText()), campoNombres, campoApellidos, campoCorreo, campoCodigo, campoPrograma, checkActivo, campoPromedio
@@ -168,7 +165,6 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
 
         JButton btnInscribir = new JButton("Inscribir");
 
-        // --- Añadir componentes con GridBagLayout ---
 
         gbc.gridx = 0; gbc.gridy = 0;
         panel.add(idLabel, gbc);
@@ -296,7 +292,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         JScrollPane scrollPane = new JScrollPane(tablaCursos);
         panel.add(scrollPane, BorderLayout.CENTER);
 
-        actualizarTablaCursos(); // llenar al inicio
+        actualizarTablaCursos(); 
 
         return panel;
     }
@@ -304,7 +300,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         JPanel panel = new JPanel(new BorderLayout());
 
         String[] columnas = {"ID Curso", "Nombre", "Programa", "Activo"};
-        modeloHistorial = new DefaultTableModel(columnas, 0);  // ← se usa el de la clase
+        modeloHistorial = new DefaultTableModel(columnas, 0);  
         tablaHistorial = new JTable(modeloHistorial);
         JScrollPane scrollPane = new JScrollPane(tablaHistorial);
 
@@ -312,7 +308,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
         return panel;
     }
     private void actualizarTablaHistorial(int estudianteID) {
-        modeloHistorial.setRowCount(0); // Limpiar tabla
+        modeloHistorial.setRowCount(0); 
 
         List<Curso> cursos = cursosInscritos.obtenerCursosPorEstudiante(estudianteID);
         for (Curso curso : cursos) {
@@ -338,7 +334,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
     
     @Override
     public void actualizarTablaCursos() {
-        modeloTablaCursos.setRowCount(0); // limpiar
+        modeloTablaCursos.setRowCount(0); 
 
         for (Curso curso : cursosInscritos.obtenerTodosLosCursos()) {
             modeloTablaCursos.addRow(new Object[]{
@@ -351,7 +347,7 @@ public class ControladorEstudianteDetalle extends JFrame implements Observador{
     }
     @Override
     public void actualizarTabla() {
-        modeloTabla.setRowCount(0); // Limpiar tabla
+        modeloTabla.setRowCount(0); 
         List<String> profesores = inscripciones.imprimirListado("profesor");
         for (String profe : profesores) {
             String[] datos = profe.split(",");
